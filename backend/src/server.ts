@@ -20,11 +20,16 @@ app.use('/api/auth', authRoutes);
 app.use('/api/applications', applicationRoutes);
 app.use('/api/ai', aiRoutes);
 
-// Connect to DB and Start Server
+// Connect to DB
+connectDB();
+
 const PORT = process.env.PORT || 5000;
 
-connectDB().then(() => {
+// For local development
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
-});
+}
+
+export default app;
