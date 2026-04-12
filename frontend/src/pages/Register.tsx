@@ -349,6 +349,16 @@ export default function Register() {
         .login-link { color: #34d399; text-decoration: none; font-weight: 500; transition: color 0.2s; }
         .login-link:hover { color: #6ee7b7; }
         .footer-note { font-size: 11px; color: rgba(255,255,255,0.15); letter-spacing: 0.1em; text-transform: uppercase; }
+
+        @media (max-width: 640px) {
+          .register-container { padding: 16px; gap: 20px; }
+          .card-inner { padding: 24px 20px; }
+          .card-title { font-size: 26px; }
+          .brand-name { font-size: 18px; }
+          .brand-icon { width: 30px; height: 30px; }
+          .submit-btn { padding: 12px; font-size: 14px; }
+          .divider { margin: 16px 0 0; }
+        }
       `}</style>
     </div>
   );

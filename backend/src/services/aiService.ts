@@ -18,13 +18,30 @@ export const parseJobDescription = async (jdText: string) => {
       messages: [
         {
           role: 'system',
-          content: `You are an expert ATS and Recruitment Researcher. Extract the following from the job description: 
-          company name, company website (official URL), brief company description, role (title), required skills (array of strings), nice-to-have skills (array of strings), seniority, and location.
+          content: `You are an expert ATS and Recruitment Researcher. Your task is to extract real-world job details from text that may be "messy" (e.g., copied from a browser with headers, footers, or extra UI text).
 
-          REAL ANSWERS POLICY:
-          1. COMPANY NAME: If not explicitly stated, look for recruitment signatures, footers, or context clues. If it's a generic description, identify it as "Standard [Industry] Role".
-          2. COMPANY URL: If you identify the company, you MUST provide their official website URL based on your knowledge (e.g., if company is "Google", URL is "https://www.google.com"). Do NOT leave this blank or return "Not specified" if the company is known.
-          3. ACCURACY: Do not return "unknown" or "Not specified" for company if clues exist.
+          FIELDS TO EXTRACT:
+          1. company: The official name of the company hiring.
+          2. companyUrl: Official website of the company (e.g., "https://www.google.com").
+          3. companyDescription: A 1-2 sentence summary of what the company does.
+          4. role: The specific job title.
+          5. jobLink: The actual job posting URL if found in the text; otherwise, the likely career page link.
+          6. requirements: A concise, bulleted summary of the core job requirements and qualifications.
+          7. requiredSkills: Array of specific technical/soft skills required.
+          8. niceToHaveSkills: Array of optional/plus skills.
+          9. seniority: (e.g., Entry, Mid, Senior, Lead).
+          10. location: (e.g., Remote, City, State/Country).
+
+          INTELLIGENCE & ACCURACY POLICY:
+          - REAL COMPANY IDENTIFICATION: Even if the text is generic, use context clues (signatures, "About Us" sections, brand names) to identify the REAL company. 
+          - NO NEGATIVE ANSWERS: NEVER return "Cannot be determined", "Not specified", "Not explicitly mentioned", or "unknown".
+          - FALLBACK STRATEGY: If a field is truly missing from the text:
+            - Company: Use "Stealth Startup", "Global Tech Leader", or "Innovative Enterprise".
+            - URL: Provide a plausible career site URL (e.g., "https://careers.google.com" if Google-like, or a generic professional search link).
+            - Location: Use "Remote" or "Global" if not found.
+            - Job Link: Provide a professional placeholder link to a search result for that role.
+            - Description: Write a generic, high-quality description based on the role and industry.
+          - DATA CONNECTION: Ensure ALL fields feel "real" and are totally connected to the provided description.
 
           Output strictly in JSON format matching this schema: 
           {
@@ -32,6 +49,8 @@ export const parseJobDescription = async (jdText: string) => {
             "companyUrl": "string",
             "companyDescription": "string",
             "role": "string",
+            "jobLink": "string",
+            "requirements": "string",
             "requiredSkills": ["string"],
             "niceToHaveSkills": ["string"],
             "seniority": "string",

@@ -436,6 +436,15 @@ export default function Login() {
           letter-spacing: 0.1em;
           text-transform: uppercase;
         }
+
+        @media (max-width: 640px) {
+          .login-container { padding: 16px; gap: 20px; }
+          .card-inner { padding: 24px 20px; }
+          .card-title { font-size: 26px; }
+          .brand-name { font-size: 18px; }
+          .brand-icon { width: 30px; height: 30px; }
+          .submit-btn { padding: 12px; font-size: 14px; }
+        }
       `}</style>
     </div>
   );

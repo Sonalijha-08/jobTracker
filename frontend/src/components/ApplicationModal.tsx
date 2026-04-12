@@ -55,8 +55,9 @@ export default function ApplicationModal({ onClose }: ApplicationModalProps) {
         location: data.location || prev.location,
         companyUrl: data.companyUrl || prev.companyUrl,
         companyDescription: data.companyDescription || prev.companyDescription,
-        notes: data.requiredSkills
-          ? `Required Skills: ${data.requiredSkills.join(', ')}\n${prev.notes}`
+        jdLink: data.jobLink || prev.jdLink,
+        notes: (data.requirements || data.requiredSkills)
+          ? `${data.requirements ? `Requirements:\n${data.requirements}\n\n` : ''}${data.requiredSkills ? `Skills: ${data.requiredSkills.join(', ')}` : ''}\n${prev.notes}`
           : prev.notes,
       }));
     } catch (error: any) {
@@ -663,8 +664,18 @@ const styles = `
   @keyframes spin { to { transform: rotate(360deg); } }
 
   @media (max-width: 640px) {
+    .modal-backdrop { padding: 10px; }
     .modal-panel { flex-direction: column; max-height: 95vh; border-radius: 20px; }
-    .ai-panel { width: 100%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); max-height: 45vh; }
+    .ai-panel { width: 100%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); max-height: 380px; flex-shrink: 0; }
+    .form-panel { flex: 1; min-height: 0; }
+    .panel-header { padding: 14px 16px; }
+    .form-fields { padding: 8px 16px 16px; gap: 16px; }
+    .form-actions { padding: 12px 16px 16px; }
     .md-hide { display: flex !important; }
+    .jd-textarea { height: 140px; }
+    .resume-textarea { min-height: 200px; }
   }
-`;
+
+  @media (max-height: 700px) and (max-width: 640px) {
+    .ai-panel { max-height: 320px; }
+  }`;

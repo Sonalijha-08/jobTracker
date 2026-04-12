@@ -426,4 +426,26 @@ const baseStyles = `
   .meta-item { display: flex; align-items: center; gap: 4px; font-size: 11px; color: rgba(255,255,255,0.25); }
 
   .drag-glow { position: absolute; inset: 0; pointer-events: none; opacity: 0.5; }
+
+  @media (max-width: 768px) {
+    .board-header { padding: 16px; flex-wrap: wrap; gap: 12px; }
+    .header-left { width: 100%; justify-content: space-between; order: 1; }
+    .header-right { width: 100%; justify-content: flex-end; order: 2; gap: 8px; }
+    .header-stats { gap: 4px; }
+    .stat-badge { padding: 4px 8px; }
+    .stat-label { display: none; }
+    .board-body { padding: 12px 16px 20px; }
+    .columns-wrap { height: calc(100vh - 150px); gap: 12px; }
+    .column { width: 260px; min-width: 260px; }
+  }
+
+  @media (max-width: 480px) {
+    .header-brand { gap: 8px; }
+    .header-title { font-size: 16px; }
+    .new-btn span { display: none; }
+    .new-btn { padding: 10px; border-radius: 12px; }
+    .column { width: 240px; min-width: 240px; }
+    .card-body { padding: 12px; }
+    .card-role { font-size: 13px; }
+  }
 `;
