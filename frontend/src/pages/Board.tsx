@@ -123,9 +123,10 @@ export default function Board() {
           <button
             onClick={handleLogout}
             className="logout-btn"
-            title="Logout"
+            title="Sign out of JobFlow"
           >
-            <LogOut size={16} />
+            <LogOut size={15} />
+            <span>Logout</span>
           </button>
         </div>
       </header>
@@ -311,15 +312,16 @@ const baseStyles = `
   .new-btn:active { transform: scale(0.98); opacity: 0.9; }
 
   .logout-btn {
-    display: flex; align-items: center; justify-content: center;
-    width: 38px; height: 38px;
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 10px; color: rgba(255,255,255,0.4);
-    margin-left: 12px; cursor: pointer;
+    display: flex; align-items: center; gap: 7px;
+    padding: 9px 16px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px; color: rgba(255,255,255,0.45);
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    margin-left: 10px; cursor: pointer;
     transition: all 0.2s;
   }
-  .logout-btn:hover { background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.2); color: #f87171; }
-  .logout-btn:active { transform: scale(0.95); }
+  .logout-btn:hover { background: rgba(239,68,68,0.12); border-color: rgba(239,68,68,0.25); color: #f87171; transform: translateY(-1px); }
+  .logout-btn:active { transform: scale(0.97); opacity: 0.85; }
 
   /* Board body */
   .board-body {
