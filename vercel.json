@@ -1,12 +1,16 @@
 {
   "version": 2,
-  "buildCommand": "cd frontend && npm install && npm run build",
+  "buildCommand": "npm install --prefix backend && npm run build --prefix frontend",
   "outputDirectory": "frontend/dist",
-  "installCommand": "npm install",
+  "functions": {
+    "api/index.ts": {
+      "includeFiles": "backend/src/**"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/backend/src/server.ts"
+      "destination": "/api/index.ts"
     },
     {
       "source": "/((?!api).*)",
@@ -15,7 +19,7 @@
   ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/api/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
         { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
@@ -24,4 +28,5 @@
     }
   ]
 }
+
 
